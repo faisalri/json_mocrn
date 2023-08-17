@@ -1,0 +1,144 @@
+{
+    "pre_script": [
+         "l mkdir $SITENAME_Execution",
+        "$timeCheck = `date \"+%y%m%d_%H%M%S\"`",
+        "l+ $SITENAME_Execution/$SITENAME_Exe_NREUtranFreqRelation_$timeCheck.log",
+        "",
+        "gs+",
+        "alt",
+        "",
+        "",
+		"## GNBCUCPFunction=1,EUtraNetwork=1",
+        "pr GNBCUCPFunction=1,EUtraNetwork=1",
+        "if $nr_of_mos = 0",
+		"crn GNBCUCPFunction=1,EUtraNetwork=1",
+		"userLabel ",
+		"end",
+        "fi",
+		"",
+		"## GNBCUCPFunction=1,Mcpc=1",
+		"pr GNBCUCPFunction=1,Mcpc=1",
+        "if $nr_of_mos = 0",
+        "crn GNBCUCPFunction=1,Mcpc=1",
+        "end",
+		"fi",
+        "",
+		"## GNBCUCPFunction=1,UeMC=1",
+		"pr GNBCUCPFunction=1,UeMC=1",
+        "if $nr_of_mos = 0",
+        "crn GNBCUCPFunction=1,UeMC=1",
+		"set freqSelAtBlindRwrToEutran 1",
+		"set ueMCCellProfileEnabled true",
+        "end",
+		"fi",
+        ""
+    ],
+	"post_script": ["", "pr ,EUtranFreqRelation=L", "l-", "alt", "", "gs-", "! ~/check.sh $SITENAME_Execution/$SITENAME_Exe_NREUtranFreqRelation_$timeCheck.log"],
+    "script_number": "05",
+    "row_start": 2,
+    "col_start": 1,
+    "col_end": 36,
+    "create_mo": [
+	{
+            "moc": "EUtranFrequency",
+            "col_sitename": 1,
+            "col_managedobject": 4,
+            "col_params": [
+				["arfcnValueEUtranDl", 5],
+				["userLabel", 6]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["userLabel", 6]
+			]
+        },
+	{
+		    "moc": "McpcPCellEUtranFreqRelProfile",
+            "col_sitename": 1,
+            "col_managedobject": 7,
+            "col_params": [
+				["inhibitMeasForCellCandidate", 8],
+				["rsrpCandidateB2Offsets", 9],
+				["userLabel", 10]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["inhibitMeasForCellCandidate", 8],
+				["rsrpCandidateB2Offsets", 9],
+				["userLabel", 10]
+			]
+        },
+	{
+		    "moc": "UeMCEUtranFreqRelProfile",
+            "col_sitename": 1,
+            "col_managedobject": 11,
+            "col_params": [
+				["blindRwrAllowed", 12],
+				["connModeAllowedPCell", 13],
+				["connModePrioPCell", 14],
+				["userLabel", 15]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["blindRwrAllowed", 12],
+				["connModeAllowedPCell", 13],
+				["connModePrioPCell", 14],
+				["userLabel", 15]
+			]
+        },
+	{
+            "moc": "EUtranFreqRelation",
+            "col_sitename": 1,
+            "col_managedobject": 16,
+            "col_params": [
+				["allowedMeasBandwidth", 17],
+				["allowedPlmnList", 18],
+				["cellReselectionPriority", 19],
+				["eUtranFallbackPrioEc", 20],
+				["eUtranFrequencyRef", 21],
+				["mcpcPCellEUtranFreqRelProfileRef", 22],
+				["pMaxEUtra", 23],
+				["presenceAntennaPort1", 24],
+				["qQualMin", 25],
+				["qRxLevMin", 26],
+				["tReselectionEUtra", 27],
+				["tReselectionEutraSfHigh", 28],
+				["tReselectionEutraSfMedium", 29],
+				["threshXHighP", 30],
+				["threshXHighQ", 31],
+				["threshXLowP", 32],
+				["threshXLowQ", 33],
+				["ueMCEUtranFreqRelProfileRef", 34],
+				["userLabel", 35],
+				["voicePrio", 36]
+			],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["allowedMeasBandwidth", 17],
+				["allowedPlmnList", 18],
+				["cellReselectionPriority", 19],
+				["eUtranFallbackPrioEc", 20],
+				["eUtranFrequencyRef", 21],
+				["mcpcPCellEUtranFreqRelProfileRef", 22],
+				["pMaxEUtra", 23],
+				["presenceAntennaPort1", 24],
+				["qQualMin", 25],
+				["qRxLevMin", 26],
+				["tReselectionEUtra", 27],
+				["tReselectionEutraSfHigh", 28],
+				["tReselectionEutraSfMedium", 29],
+				["threshXHighP", 30],
+				["threshXHighQ", 31],
+				["threshXLowP", 32],
+				["threshXLowQ", 33],
+				["ueMCEUtranFreqRelProfileRef", 34],
+				["userLabel", 35],
+				["voicePrio", 36]
+			]
+        }
+    ]
+}

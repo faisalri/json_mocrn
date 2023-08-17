@@ -1,0 +1,165 @@
+{
+    "pre_script": [
+         "l mkdir $SITENAME_Execution",
+        "$timeCheck = `date \"+%y%m%d_%H%M%S\"`",
+        "l+ $SITENAME_Execution/$SITENAME_Exe_NREUtranFreqRelation_$timeCheck.log",
+        "",
+        "gs+",
+        "alt",
+        "",
+        "",
+		"## GNBCUCPFunction=1,EUtraNetwork=1",
+        "pr GNBCUCPFunction=1,EUtraNetwork=1",
+        "if $nr_of_mos = 0",
+		"crn GNBCUCPFunction=1,EUtraNetwork=1",
+		"userLabel ",
+		"end",
+        "fi",
+		"",
+		"## GNBCUCPFunction=1,Mcpc=1",
+		"pr GNBCUCPFunction=1,Mcpc=1",
+        "if $nr_of_mos = 0",
+        "crn GNBCUCPFunction=1,Mcpc=1",
+        "end",
+		"fi",
+        "",
+		"## GNBCUCPFunction=1,TrafficSteering=1",
+		"pr GNBCUCPFunction=1,TrafficSteering=1",
+        "if $nr_of_mos = 0",
+        "crn GNBCUCPFunction=1,TrafficSteering=1",
+        "end",
+		"fi",
+        "",
+		"## GNBCUCPFunction=1,UeMC=1",
+		"pr GNBCUCPFunction=1,UeMC=1",
+        "if $nr_of_mos = 0",
+        "crn GNBCUCPFunction=1,UeMC=1",
+		"set userLabel ",
+        "end",
+		"fi",
+        ""
+    ],
+	"post_script": ["", "pr ,EUtranFreqRelation=L", "l-", "alt", "", "gs-", "! ~/check.sh $SITENAME_Execution/$SITENAME_Exe_NREUtranFreqRelation_$timeCheck.log"],
+    "script_number": "05",
+    "row_start": 2,
+    "col_start": 1,
+    "col_end": 39,
+    "create_mo": [
+	{
+            "moc": "EUtranFrequency",
+            "col_sitename": 1,
+            "col_managedobject": 4,
+            "col_params": [
+				["arfcnValueEUtranDl", 5],
+				["userLabel", 6]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["userLabel", 6]
+			]
+        },
+	{
+		    "moc": "McpcPCellEUtranFreqRelProfile",
+            "col_sitename": 1,
+            "col_managedobject": 7,
+            "col_params": [
+				["ueConfGroupType", 8],
+				["userLabel", 9]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["ueConfGroupType", 8],
+				["userLabel", 9]
+			]
+        },
+	{
+		    "moc": "TrStSaEUtranFreqRelProfile",
+            "col_sitename": 1,
+            "col_managedobject": 10,
+            "col_params": [
+				["ueConfGroupType", 11],
+				["userLabel", 12]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["ueConfGroupType", 11],
+				["userLabel", 12]
+			]
+        },
+	{
+		    "moc": "UeMCEUtranFreqRelProfile",
+            "col_sitename": 1,
+            "col_managedobject": 13,
+            "col_params": [
+				["ueConfGroupType", 14],
+				["userLabel", 15]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["ueConfGroupType", 14],
+				["userLabel", 15]
+			]
+        },
+	{
+            "moc": "EUtranFreqRelation",
+            "col_sitename": 1,
+            "col_managedobject": 16,
+            "col_params": [
+				["allowedMeasBandwidth", 17],
+				["allowedPlmnList", 18],
+				["anrMeasOn", 19],
+				["cellReselectionPriority", 20],
+				["cellReselectionSubPriority", 21],
+				["eUtranFallbackPrioEc", 22],
+				["eUtranFrequencyRef", 23],
+				["mcpcPCellEUtranFreqRelProfileRef", 24],
+				["pMaxEUtra", 25],
+				["presenceAntennaPort1", 26],
+				["qQualMin", 27],
+				["qRxLevMin", 28],
+				["tReselectionEUtra", 29],
+				["tReselectionEutraSfHigh", 30],
+				["tReselectionEutraSfMedium", 31],
+				["threshXHighP", 32],
+				["threshXHighQ", 33],
+				["threshXLowP", 34],
+				["threshXLowQ", 35],
+				["trStSaEUtranFreqRelProfileRef", 36],
+				["ueMCEUtranFreqRelProfileRef", 37],
+				["userLabel", 38],
+				["voicePrio", 39]
+			],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["allowedMeasBandwidth", 17],
+				["allowedPlmnList", 18],
+				["anrMeasOn", 19],
+				["cellReselectionPriority", 20],
+				["cellReselectionSubPriority", 21],
+				["eUtranFallbackPrioEc", 22],
+				["eUtranFrequencyRef", 23],
+				["mcpcPCellEUtranFreqRelProfileRef", 24],
+				["pMaxEUtra", 25],
+				["presenceAntennaPort1", 26],
+				["qQualMin", 27],
+				["qRxLevMin", 28],
+				["tReselectionEUtra", 29],
+				["tReselectionEutraSfHigh", 30],
+				["tReselectionEutraSfMedium", 31],
+				["threshXHighP", 32],
+				["threshXHighQ", 33],
+				["threshXLowP", 34],
+				["threshXLowQ", 35],
+				["trStSaEUtranFreqRelProfileRef", 36],
+				["ueMCEUtranFreqRelProfileRef", 37],
+				["userLabel", 38],
+				["voicePrio", 39]
+			]
+        }
+    ]
+}

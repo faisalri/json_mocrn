@@ -1,0 +1,90 @@
+{
+    "pre_script": [
+        "l mkdir $SITENAME_Execution",
+        "$timeCheck = `date \"+%y%m%d_%H%M%S\"`",
+        "l+ $SITENAME_Execution/$SITENAME_Exe_GUtranFreqRelation_$timeCheck.log",
+        "",
+        "gs+",
+        "alt",
+        "",
+        "",
+        "## GUtraNetwork=1",
+        "pr ENodeBFunction=1,GUtraNetwork=1",
+        "if $nr_of_mos = 0",
+        "    crn ENodeBFunction=1,GUtraNetwork=1",
+        "    userLabel 1",
+        "    end",
+        "fi",
+        "",
+        ""
+    ],
+    "post_script": ["", "pr GUtranSyncSignalFrequency", "pr GUtranFreqRelation", "alt", "", "gs-", "l-", "! ~/check.sh $SITENAME_Execution/$SITENAME_Exe_GUtranFreqRelation_$timeCheck.log"],
+    "script_number": "01",
+    "row_start": 2,
+    "col_start": 1,
+    "col_end": 29,
+    "create_mo": [
+        {
+            "moc": "GUtranSyncSignalFrequency",
+            "col_sitename": 1,
+            "col_managedobject": 4,
+            "col_params": [
+				["arfcn", 5],
+				["band", 6],
+				["smtcDuration", 7],
+				["smtcOffset", 8],
+				["smtcPeriodicity", 9],
+				["smtcScs", 10],
+				["userLabel", 11]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": false,
+            "set_parameters": []
+        },
+        {
+            "moc": "GUtranFreqRelation",
+            "col_sitename": 1,
+            "col_managedobject": 12,
+            "col_params": [
+				["allowedPlmnList", 13],
+				["anrMeasOn", 14],
+				["b1ThrRsrpFreqOffset", 15],
+				["b1ThrRsrqFreqOffset", 16],
+				["cellReselectionPriority", 17],
+				["connectedModeMobilityPrio", 18],
+				["deriveSsbIndexFromCell", 19],
+				["endcB1MeasPriority", 20],
+				["gUtranSyncSignalFrequencyRef", 21],
+				["pMaxNR", 22],
+				["qOffsetFreq", 23],
+				["qQualMin", 24],
+				["qRxLevMin", 25],
+				["threshXHigh", 26],
+				["threshXHighQ", 27],
+				["threshXLow", 28],
+				["threshXLowQ", 29]
+		],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["allowedPlmnList", 13],
+				["anrMeasOn", 14],
+				["b1ThrRsrpFreqOffset", 15],
+				["b1ThrRsrqFreqOffset", 16],
+				["cellReselectionPriority", 17],
+				["connectedModeMobilityPrio", 18],
+				["deriveSsbIndexFromCell", 19],
+				["endcB1MeasPriority", 20],
+				["gUtranSyncSignalFrequencyRef", 21],
+				["pMaxNR", 22],
+				["qOffsetFreq", 23],
+				["qQualMin", 24],
+				["qRxLevMin", 25],
+				["threshXHigh", 26],
+				["threshXHighQ", 27],
+				["threshXLow", 28],
+				["threshXLowQ", 29]
+			]
+        }
+    ]
+}

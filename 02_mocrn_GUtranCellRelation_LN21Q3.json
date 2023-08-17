@@ -1,0 +1,81 @@
+{
+    "pre_script": [
+        "l mkdir $SITENAME_Execution",
+        "$timeCheck = `date \"+%y%m%d_%H%M%S\"`",
+        "l+ $SITENAME_Execution/$SITENAME_Exe_GUtranCellRelation_$timeCheck.log",
+        "",
+        "gs+",
+        "alt",
+        "",
+        "",
+		 "## GUtraNetwork=1",
+        "pr ENodeBFunction=1,GUtraNetwork=1",
+        "if $nr_of_mos = 0",
+		"crn ENodeBFunction=1,GUtraNetwork=1",
+		"userLabel 1",
+		"end",
+        "fi",
+        "",
+        ""
+    ],
+	"post_script": ["", "lpr ExternalGNodeBFunction=", "pr GUtranCellRelation", "", "alt", "", "gs-", "l-", "! ~/check.sh $SITENAME_Execution/$SITENAME_Exe_GUtranCellRelation_$timeCheck.log"],
+    "script_number": "02",
+    "row_start": 2,
+    "col_start": 1,
+    "col_end": 26,
+    "create_mo": [
+		{
+            "moc": "ExternalGNodeBFunction",
+            "col_sitename": 1,
+            "col_managedobject": 6,
+            "col_params": [
+				["eNBVlanPortRef", 7],
+				["gNodeBId", 8],
+				["gNodeBIdLength", 9],
+				["gNodeBPlmnId", 10],
+				["userLabel", 11]
+			],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": []
+        },
+		{
+			"moc": "ExternalGUtranCell",
+            "col_sitename": 1,
+            "col_managedobject": 12,
+            "col_params": [
+				["absSubFrameOffset", 13],
+				["absTimeOffset", 14],
+				["gUtranSyncSignalFrequencyRef", 15],
+				["isRemoveAllowed", 16],
+				["localCellId", 17],
+				["nRTAC", 18],
+				["physicalLayerCellIdGroup", 19],
+				["physicalLayerSubCellId", 20],
+				["plmnIdList", 21]
+            ],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": []
+		},
+		{
+			"moc": "GUtranCellRelation",
+            "col_sitename": 1,
+            "col_managedobject": 22,
+            "col_params": [
+				["essEnabled", 23],
+				["isRemoveAllowed", 24],
+				["neighborCellRef", 25],
+				["userLabel", 26]
+			],
+            "if_nr_of_mos_0": true,
+            "set_if_exists": true,
+            "set_parameters": [
+				["essEnabled", 23],
+				["isRemoveAllowed", 24],
+				["neighborCellRef", 25],
+				["userLabel", 26]
+			]
+		}
+    ]
+}
